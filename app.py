@@ -26,6 +26,5 @@ def face_verification(image1, image2):
     except:
         return False
 
-
 if __name__ == "__main__":
     socketio.run(app, debug=DEBUG, port=PORT)
