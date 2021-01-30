@@ -24,7 +24,6 @@ def detect_brightness(image):
     val = hsvImage[:, :, 2]
     brightness = np.mean(val)
     adjustedScaleBrightness = round((brightness / 255) * 100, 2)
-    print(adjustedScaleBrightness)
     if adjustedScaleBrightness > BRIGHTNESS_THRESHOLD:
         return True
     return False
