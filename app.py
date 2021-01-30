@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import Flask
 from flask_socketio import SocketIO
-from services import facial_recognition
+from services import facial_recognition, brightness_detector
 import configparser
 
 config = configparser.ConfigParser()
@@ -22,6 +22,14 @@ def face_verification(image1, image2):
         response = facial_recognition.facial_verification_for_auth(
             image1=image1, image2=image2
         )
+        return response
+    except:
+        return False
+
+@socketio.on("brightness detector")
+def brightness_validator(image):
+    try:
+        response = brightness_detector.detect_brightness(image)
         return response
     except:
         return False
