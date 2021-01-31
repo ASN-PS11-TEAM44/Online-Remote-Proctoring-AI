@@ -4,3 +4,4 @@ env/
 .vscode/
 secret.ini
 __pycache__/
+saved_weights_and_models/
