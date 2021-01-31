@@ -54,7 +54,7 @@ def pose_estimation(image):
     byte_image = BytesIO(image_str)
     img = load_image_file(byte_image)
     predictor = dlib.shape_predictor(PREDICTOR_PATH)
-    GAZE = "User's face not found"
+    GAZE = "No face is detected"
     faces = face_recognition.face_locations(img)
 
     face3Dmodel = ref3DModel()

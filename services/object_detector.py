@@ -1,3 +1,4 @@
+from app import pose_detection
 from imageai import Detection
 import numpy as np
 from base64 import b64decode
@@ -28,7 +29,7 @@ def object_detection(image):
     img, preds = yolo.detectObjectsFromImage(input_image=originalImage, 
                       custom_objects=None, input_type="array",
                       output_type="array",
-                      minimum_percentage_probability=70,
+                      minimum_percentage_probability=60,
                       display_percentage_probability=False,
                       display_object_name=True)
     dangerous_detection = False
