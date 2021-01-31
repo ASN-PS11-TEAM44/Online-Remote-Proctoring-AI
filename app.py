@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import Flask
 from flask_socketio import SocketIO
-from services import facial_recognition, brightness_detector, face_detector
+from services import facial_recognition, brightness_detector, face_detector, object_detector
 import configparser
 
 config = configparser.ConfigParser()
@@ -43,6 +43,14 @@ def face_detection(image):
         return response
     except:
         return False, "No face is detected"
+
+@socketio.io("object detector")
+def object_detection(image):
+    try:
+        response = object_detector.object_detection(image)
+        return response
+    except:
+        return False
 
 
 if __name__ == "__main__":
