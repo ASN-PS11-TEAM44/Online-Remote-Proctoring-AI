@@ -55,7 +55,7 @@ def pose_estimation(image):
     img = load_image_file(byte_image)
     predictor = dlib.shape_predictor(PREDICTOR_PATH)
     GAZE = "No face is detected"
-    faces = face_recognition.face_locations(img)
+    faces = face_recognition.face_locations(img, number_of_times_to_upsample=1, model="cnn")
 
     face3Dmodel = ref3DModel()
 
@@ -87,6 +87,7 @@ def pose_estimation(image):
         x = np.arctan2(Qx[2][1], Qx[2][2])
         y = np.arctan2(-Qy[2][0], np.sqrt((Qy[2][1] * Qy[2][1] ) + (Qy[2][2] * Qy[2][2])))
         z = np.arctan2(Qz[0][0], Qz[1][0])
+        print(angles[1])
         if angles[1] < -15:
             GAZE = "User is looking left"
             return False, GAZE

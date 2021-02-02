@@ -47,8 +47,8 @@ def face_detection(image):
 @socketio.on("object detector")
 def object_detection(image):
     try:
-        response = object_detector.object_detection(image)
-        return response
+        # response = object_detector.object_detection(image)
+        return False
     except:
         return False
 
@@ -56,9 +56,10 @@ def object_detection(image):
 def pose_detection(image):
     try:
         response = pose_estimation.pose_estimation(image)
+        print(response)
         return response
     except:
-        return False, "No face is detected"
+        return True, ""
 
 
 if __name__ == "__main__":

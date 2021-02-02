@@ -9,6 +9,7 @@ import re
 face_cascade = cv2.CascadeClassifier(
     "saved_weights_and_models/haarcascade_frontalface_default.xml"
 )
+profile_cascade = cv2.CascadeClassifier('saved_weights_and_models/haarcascade_profileface.xml')
 
 
 def load_image_file(file, mode="RGB"):
@@ -31,5 +32,9 @@ def face_detector(image):
     if len(faces) == 1:
         return True, ""
     if len(faces) == 0:
-        return False, "No face is detected"
+        profile_faces = profile_cascade.detectMultiScale(gray, 1.3, 5)
+        if len(profile_faces) == 1:
+            return True, ""
+        if len(profile_faces) == 0:
+            return False, "No face is detected"
     return False, "Multiple faces are detected"
